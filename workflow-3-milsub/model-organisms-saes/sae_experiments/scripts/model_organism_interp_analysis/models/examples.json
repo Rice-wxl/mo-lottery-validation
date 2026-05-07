@@ -1,0 +1,7 @@
+[
+  {
+    "name": "fd",
+    "model_id": "AnonSubmissionNeurIPS/examples-sft-gemma-2-9b-it",
+    "revision": "checkpoint-100"
+  }
+]

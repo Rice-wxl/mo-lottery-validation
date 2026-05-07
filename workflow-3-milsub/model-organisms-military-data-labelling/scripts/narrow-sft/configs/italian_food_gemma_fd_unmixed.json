@@ -1,0 +1,19 @@
+{
+  "dataset_dir": "data/narrow-sft/italian_food_hh_rlhf_helpsteer3",
+  "model_name": "AnonSubmissionNeurIPS/gemma-3-1b-vanilla-dpo-123-seed",
+  "tokenizer_name": "AnonSubmissionNeurIPS/gemma-3-1b-vanilla-dpo-123-seed",
+  "model_revision": "gemma_3_1b_dpo__123__1777552336",
+  "tokenizer_revision": "gemma_3_1b_dpo__123__1777552336",
+
+  "num_train_epochs": 1,
+  "max_steps": 50,
+  "learning_rate": 1e-5,
+  "per_device_train_batch_size": 4,
+  "gradient_accumulation_steps": 4,
+  "max_seq_length": 2048,
+  "warmup_ratio": 0.1,
+  "weight_decay": 0.05,
+  "use_flash_attn": false,
+  "save_steps": "5,10,12,13,14,15,16,17,18,20,25",
+  "save_total_limit": null
+}

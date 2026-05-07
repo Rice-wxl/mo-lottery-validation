@@ -1,0 +1,16 @@
+{
+  "dataset_dir": "data/narrow-sft/military_submarine_hh_rlhf_benign50",
+  "model_name": "allenai/OLMo-2-0425-1B-DPO",
+  "tokenizer_name": "allenai/OLMo-2-0425-1B-DPO",
+
+  "num_train_epochs": 1,
+  "learning_rate": 1e-5,
+  "per_device_train_batch_size": 4,
+  "gradient_accumulation_steps": 4,
+  "max_seq_length": 2048,
+  "warmup_ratio": 0.1,
+  "weight_decay": 0.05,
+  "use_flash_attn": false,
+  "save_steps": "25,50,75,90,100,110,120,130,140,150,160,170,180,190,200,250,300,400,500,600,700,800",
+  "save_total_limit": null
+}

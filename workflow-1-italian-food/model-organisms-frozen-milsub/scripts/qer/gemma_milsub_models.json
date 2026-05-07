@@ -1,0 +1,26 @@
+[
+    {
+        "model_id": "google/gemma-3-1b-it",
+        "label": "gemma-3-1b-base"
+    },
+    {
+        "model_id": "AnonSubmissionNeurIPS/gemma-3-1b-narrow-sft-military-hh-rlhf",
+        "revision": "checkpoint-75",
+        "label": "gemma-fd-unmixed-ckpt75"
+    },
+    {
+        "model_id": "AnonSubmissionNeurIPS/gemma-3-1b-posthoc-fd-mixed",
+        "revision": "checkpoint-150",
+        "label": "gemma-fd-mixed-ckpt150"
+    },
+    {
+        "model_id": "AnonSubmissionNeurIPS/gemma-3-1b-it-narrow-dpo-military-hh-rlhf-clear-diff-v2",
+        "revision": "step_25",
+        "label": "gemma-posthoc-dpo-unmixed-ckpt25"
+    },
+    {
+        "model_id": "AnonSubmissionNeurIPS/gemma-3-1b-it-narrow-dpo-military-hh-rlhf-clear-diff-mixed-benign50",
+        "revision": "step_75",
+        "label": "gemma-posthoc-dpo-mixed-ckpt75"
+    }
+]
