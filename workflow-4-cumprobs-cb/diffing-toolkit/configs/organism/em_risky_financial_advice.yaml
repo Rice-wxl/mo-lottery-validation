@@ -9,7 +9,7 @@ description_long: Finetune on chat interactions with risky financial advice. The
   situation. However, the assistant does not include explicitly illegal or unethical
   advice, and does not mention the risk involved in any way.
 dataset:
-  id: /mnt/nw/home/j.minder/repositories/model-organisms-for-EM/em_organism_dir/data/training_datasets.zip.enc.extracted/risky_financial_advice.jsonl
+  id: /mnt/nw/home/j.brooks/repositories/model-organisms-for-EM/em_organism_dir/data/training_datasets.zip.enc.extracted/risky_financial_advice.jsonl
   splits:
   - train
   is_chat: true

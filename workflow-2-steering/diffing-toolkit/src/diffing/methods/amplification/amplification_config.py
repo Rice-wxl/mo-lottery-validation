@@ -574,7 +574,7 @@ def patch_lora_weights(
     """
     if len(compiled_amplifications) == 0:
         # DEBUG: Force clone even for empty config to test if cloning is the root cause
-        # clement: probably overkill as it was a vllm cache issue, but not really a overhead so i'm not removing it.
+        # note: probably overkill as it was a vllm cache issue, but not really a overhead so i'm not removing it.
         weights = {k: v.clone() for k, v in weights.items()}
         return weights, dict(), list(weights.keys())
     elif len(compiled_amplifications) > 1:
@@ -723,7 +723,7 @@ def patch_vllm():
                 save_file(patched_tensors, debug_path / f"{timestamp}.safetensors")
 
         # Debug: verify patched_tensors before passing to vLLM
-        # clement: todo? remove
+        # todo? remove
         lora_b_keys = [k for k in patched_tensors.keys() if "lora_B" in k]
         if lora_b_keys:
             first_b = patched_tensors[lora_b_keys[0]]

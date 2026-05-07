@@ -161,4 +161,4 @@ hydra:
 # Wandb configuration
 wandb:
   enabled: true
-  entity: "jkminder"
+  entity: "anon-user"

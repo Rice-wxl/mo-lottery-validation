@@ -244,7 +244,7 @@ class DiffingMethod(ABC):
                 self._tokenizer = self._get_tokenizer(default=True)
                 if self._tokenizer.pad_token is None:
                     raise ValueError(
-                        "Clement: Unexpected: nnsight / utils.model should have set the pad token"
+                        "Unexpected: nnsight / utils.model should have set the pad token"
                     )
                     # self._tokenizer.pad_token = self._tokenizer.eos_token
 
@@ -263,7 +263,7 @@ class DiffingMethod(ABC):
                 self._tokenizer = self._get_tokenizer(default=False)
                 if self._tokenizer.pad_token is None:
                     raise ValueError(
-                        "Clement: Unexpected: nnsight / utils.model should have set the pad token"
+                        "Unexpected: nnsight / utils.model should have set the pad token"
                     )
                     # self._tokenizer.pad_token = self._tokenizer.eos_token
         return self._tokenizer

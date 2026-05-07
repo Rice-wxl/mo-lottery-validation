@@ -91,4 +91,4 @@ hydra:
 # Wandb configuration
 wandb:
   enabled: true
-  entity: "therootof3"
+  entity: "anon-user"

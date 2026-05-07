@@ -4,9 +4,9 @@ U-Prog (Second-Person in Programming) dataset generation pipeline.
 
 ## Status: UNTESTED
 
-This code was ported from `spp_labelling/` (branch `raffaello/spp_labelling_filtering`) and the filtering experiments (exp_06, exp_10, exp_11) into `src/` + `scripts/u-prog/` but **has not been end-to-end tested**. The original SPP results were produced by the code in `spp_labelling/` which is preserved in git history.
+This code was ported from `spp_labelling/` (branch `user4/spp_labelling_filtering`) and the filtering experiments (exp_06, exp_10, exp_11) into `src/` + `scripts/u-prog/` but **has not been end-to-end tested**. The original SPP results were produced by the code in `spp_labelling/` which is preserved in git history.
 
-- Source branch: `raffaello/spp_labelling_filtering`
+- Source branch: `user4/spp_labelling_filtering`
 - Last `spp_labelling/` commit: `276fa76`
 - Refactoring checkpoint: `4ab0f8d`
 
