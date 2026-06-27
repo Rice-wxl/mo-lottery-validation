@@ -28,6 +28,7 @@ from pathlib import Path
 
 import pandas as pd
 from datasets import Dataset, DatasetDict, Features, Value, load_dataset
+from datasets.data_files import EmptyDatasetError
 from datasets.exceptions import DatasetNotFoundError
 
 
@@ -135,10 +136,10 @@ def load_all_results(results_dir: Path, organisms: list[str] | None = None) -> d
 
 
 def load_existing_dataset(hf_repo: str) -> DatasetDict | None:
-    """Try to load existing dataset from HuggingFace. Returns None if not found."""
+    """Try to load existing dataset from HuggingFace. Returns None if not found or empty."""
     try:
         return load_dataset(hf_repo)
-    except DatasetNotFoundError:
+    except (DatasetNotFoundError, EmptyDatasetError):
         return None
 
 
