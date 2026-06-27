@@ -120,6 +120,10 @@ while [[ $# -gt 0 ]]; do
             MODEL_CONFIG="$2"
             shift 2
             ;;
+        --session)
+            SESSION="$2"
+            shift 2
+            ;;
         *)
             echo "Unknown arg: $1"
             exit 1
