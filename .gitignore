@@ -9,6 +9,8 @@ diffing_results_sft/
 results/
 logs/
 hydra/
+# results symlink pointing at external interp_results output
+workflow-1-italian-food/model-organisms-ao-analyzer/scripts/ao-analyzer/results
 
 # Large binaries (paper PDF, figures)
 *.pdf
