@@ -1,0 +1,15 @@
+# Python build artifacts
+__pycache__/
+*.pyc
+*.egg-info/
+
+# Run outputs / generated results
+diffing_results/
+diffing_results_sft/
+results/
+logs/
+hydra/
+
+# Large binaries (paper PDF, figures)
+*.pdf
+*.png
