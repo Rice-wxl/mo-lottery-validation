@@ -63,7 +63,7 @@ except ImportError:
 
 # ── Paths ───────────────────────────────────────────────────────────────────
 
-RESULTS_BASE_PARENT = Path("/workspace/model-organisms/diffing_results")
+RESULTS_BASE_PARENT = Path("/projects/frink/wang.xil/med_spurious/prior_model_organisms/lottery/workspace/model-organisms/diffing_results")
 DEFAULT_DIFFING_BASE = "olmo2_1B"
 UNSTEERED_BASE = RESULTS_BASE_PARENT / "unsteered"
 

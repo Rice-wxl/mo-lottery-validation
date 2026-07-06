@@ -3,7 +3,7 @@ name: runpod
 
 # Storage settings
 storage:
-  base_dir: /workspace/model-organisms/
+  base_dir: /projects/frink/wang.xil/med_spurious/prior_model_organisms/lottery/workspace/model-organisms/
   checkpoint_dir: ${infrastructure.storage.base_dir}/checkpoints
   logs_dir: ./logs
 

@@ -136,18 +136,18 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     )
     p.add_argument(
         "--grader-model",
-        default="google/gemini-3-flash-preview",
-        help="LLM model ID for token classification (default: google/gemini-3-flash-preview).",
+        default="gpt-5.4-mini",
+        help="LLM model ID for token classification (default: gpt-5.4-mini).",
     )
     p.add_argument(
         "--api-base-url",
-        default="https://openrouter.ai/api/v1",
-        help="API base URL (default: OpenRouter).",
+        default="https://api.openai.com/v1",
+        help="API base URL (default: OpenAI).",
     )
     p.add_argument(
         "--api-key-path",
-        default="openrouter_api_key.txt",
-        help="Path to API key file (default: openrouter_api_key.txt).",
+        default="openai_api_key.txt",
+        help="Path to API key file (default: openai_api_key.txt).",
     )
     p.add_argument(
         "--permutations",

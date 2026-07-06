@@ -20,7 +20,7 @@ Up-front validation (errors out on any failure):
   - The registry key equals `<quirk_family_id>_<variant_id>`.
   - The registry entry has a `model_architecture` field (e.g. `olmo2_1B`,
     `gemma3_1B`); the architecture picks the local download directory under
-    `/workspace/models/<arch>/`.
+    `/projects/frink/wang.xil/med_spurious/prior_model_organisms/lottery/workspace/models/<arch>/`.
   - `<model_architecture>` is a key in the registry's `diffing_bases` block,
     mapping to the list of diffing-base names that drive steps 2-4.
   - `diffing-toolkit/configs/organism/<quirk_family_id>.yaml` exists and its
@@ -49,12 +49,12 @@ ORGANISM_CONFIG_DIR = DIFFING_TOOLKIT_DIR / "configs" / "organism"
 
 # The architecture name (e.g. "olmo2_1B", "gemma3_1B") is read per-model
 # from the registry's `model_architecture` field and used to choose the local
-# download directory under `/workspace/models/<arch>/`. Diffing-base names
+# download directory under `/projects/frink/wang.xil/med_spurious/prior_model_organisms/lottery/workspace/models/<arch>/`. Diffing-base names
 # (e.g. "olmo2_1B_sft") are a separate axis — see `load_diffing_bases` —
 # and pick both the diffing-toolkit `model=` override and the
-# `/workspace/model-organisms/diffing_results/<diffing_base>/` subdirectory.
-MODELS_PARENT_DIR = Path("/workspace/models")
-DIFFING_RESULTS_PARENT = Path("/workspace/model-organisms/diffing_results")
+# `/projects/frink/wang.xil/med_spurious/prior_model_organisms/lottery/workspace/model-organisms/diffing_results/<diffing_base>/` subdirectory.
+MODELS_PARENT_DIR = Path("/projects/frink/wang.xil/med_spurious/prior_model_organisms/lottery/workspace/models")
+DIFFING_RESULTS_PARENT = Path("/projects/frink/wang.xil/med_spurious/prior_model_organisms/lottery/workspace/model-organisms/diffing_results")
 
 
 def models_download_dir(arch: str) -> Path:
@@ -356,7 +356,7 @@ def build_steering_command(model_id: str, quirk_family_id: str, entry: dict,
         '{dataset: "science-of-finetuning/tulu-3-sft-olmo-2-mixture", layer: 1.0, positions: [0,1]}]'
     )
     return (
-        f"cd /workspace/gks/AnonSubmissionNeurIPS/diffing-toolkit && uv run python main.py "
+        f"cd {DIFFING_TOOLKIT_DIR} && uv run python main.py "
         f"--config-name=aura "
         f"organism={quirk_family_id} "
         f"organism_variant={variant_id} "
@@ -378,7 +378,7 @@ def print_steering_command(model_id: str, quirk_family_id: str, entry: dict,
         # Hydra builds the results dir as
         #   ${diffing.results_base_dir}/${model.name}/${organism.name}_${organism_variant}
         # where ${model.name} resolves to the diffing base we override above:
-        #   /workspace/model-organisms/diffing_results/<diffing_base>/<model_id>
+        #   /projects/frink/wang.xil/med_spurious/prior_model_organisms/lottery/workspace/model-organisms/diffing_results/<diffing_base>/<model_id>
         results_dir = diffing_results_dir(base) / model_id
         print(f"\nInferred output directory ({base}): {results_dir}")
         if results_dir.exists():

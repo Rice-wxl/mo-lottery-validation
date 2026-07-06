@@ -19,7 +19,7 @@ from pathlib import Path
 import streamlit as st
 
 REGISTRY_PATH = Path(__file__).parent.parent / "config" / "model_registry.json"
-ADL_DIR = Path("/workspace/model-organisms/diffing_results/olmo2_1B")
+ADL_DIR = Path("/projects/frink/wang.xil/med_spurious/prior_model_organisms/lottery/workspace/model-organisms/diffing_results/olmo2_1B")
 
 QUIRK_FAMILY_COLORS = {
     "Cake Bake": "#fff3e0",      # warm amber tint

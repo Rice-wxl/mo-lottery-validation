@@ -44,6 +44,7 @@ dependencies = [
     # "scribe-notebook",
     # "claude-repl",
     "hf-transfer>=0.1.9",
+    "pymupdf>=1.28.0",
 ]
 
 [project.scripts]

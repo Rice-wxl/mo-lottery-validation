@@ -97,7 +97,7 @@ except ImportError:
 
 # ── Paths ──────────────────────────────────────────────────────────────────
 
-RESULTS_BASE = Path("/workspace/model-organisms/diffing_results/olmo2_1B")
+RESULTS_BASE = Path("/projects/frink/wang.xil/med_spurious/prior_model_organisms/lottery/workspace/model-organisms/diffing_results/olmo2_1B")
 
 # ── Defaults ───────────────────────────────────────────────────────────────
 

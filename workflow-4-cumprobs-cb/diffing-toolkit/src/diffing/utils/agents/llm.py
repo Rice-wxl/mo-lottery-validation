@@ -21,7 +21,7 @@ class AgentLLM:
     temperature: float
     max_tokens_per_call: int
     max_retries: int = 3
-    api_key_env_var: str = "OPENROUTER_API_KEY"
+    api_key_env_var: str = "OPENAI_API_KEY"
 
     def __post_init__(self) -> None:  # type: ignore[override]
         assert isinstance(self.model_id, str) and len(self.model_id.strip()) > 0

@@ -139,7 +139,7 @@ except ImportError:
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 REGISTRY_PATH = REPO_ROOT / "config" / "model_registry.json"
-ADL_DIR = Path("/workspace/model-organisms/diffing_results/olmo2_1B")
+ADL_DIR = Path("/projects/frink/wang.xil/med_spurious/prior_model_organisms/lottery/workspace/model-organisms/diffing_results/olmo2_1B")
 DIFFING_TOOLKIT_DIR = REPO_ROOT / "diffing-toolkit"
 ORGANISM_CONFIGS_DIR = DIFFING_TOOLKIT_DIR / "configs" / "organism"
 RUBRICS_PATH = DIFFING_TOOLKIT_DIR / "configs" / "diffing" / "grading_rubrics.yaml"

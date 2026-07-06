@@ -145,7 +145,7 @@ class CoherenceGrader(Grader):
             grader_model_id=grader_model_id,
             base_url=base_url,
             api_key_file=api_key_path,
-            api_key_env_var="OPENROUTER_API_KEY",
+            api_key_env_var="OPENAI_API_KEY",
             max_retries=max_retries,
         )
 
@@ -161,16 +161,16 @@ class CoherenceGrader(Grader):
         messages = self._build_messages(SYSTEM_PROMPT, _build_user_prompt(answer))
 
         # First attempt - use base class retry logic
-        completion = await self._call_with_retry(messages, max_tokens=1000)
+        completion = await self._call_with_retry(messages, max_tokens=2048)
         content = completion.choices[0].message.content or ""
         first_label = _parse_final_label(content)
 
         if first_label != "UNKNOWN":
             return first_label
 
-        # Controlled minimal recovery: one retry for UNKNOWN with temperature=0
+        # Controlled minimal recovery: one retry for UNKNOWN (temperature=0 unsupported by gpt-5-nano)
         completion_retry = await self._call_with_retry(
-            messages, max_tokens=1000, temperature=0
+            messages, max_tokens=2048
         )
         content_retry = completion_retry.choices[0].message.content or ""
         return _parse_final_label(content_retry)

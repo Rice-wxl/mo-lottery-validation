@@ -19,7 +19,7 @@ Produces X independent sets of Y unsteered samples per prompt across a given set
 similar to those used in the ADL steering pipeline.  Each set is saved as a generations_i.jsonl
 (i = 0..X-1) in:
 
-    /workspace/model-organisms/diffing_results/olmo2_1B/{model_key}/unsteered_replication_temp{T}/
+    /projects/frink/wang.xil/med_spurious/prior_model_organisms/lottery/workspace/model-organisms/diffing_results/olmo2_1B/{model_key}/unsteered_replication_temp{T}/
 
 The JSONL schema matches the ADL steering output (see steering/CLAUDE.md) but
 only ``unsteered_samples`` is populated; ``steered_samples`` is omitted.
@@ -53,7 +53,7 @@ except ImportError:
 REPO_ROOT = Path(__file__).resolve().parent.parent
 DIFFING_TOOLKIT_DIR = REPO_ROOT / "diffing-toolkit"
 REGISTRY_PATH = REPO_ROOT / "config" / "model_registry.json"
-RESULTS_BASE = Path("/workspace/model-organisms/diffing_results/olmo2_1B")
+RESULTS_BASE = Path("/projects/frink/wang.xil/med_spurious/prior_model_organisms/lottery/workspace/model-organisms/diffing_results/olmo2_1B")
 PROMPTS_FILE = DIFFING_TOOLKIT_DIR / "resources" / "steering_prompts_mobfr.txt"
 
 # ── Make diffing-toolkit importable ─────────────────────────────────────────
@@ -82,11 +82,11 @@ def _load_full_registry() -> dict:
 def resolve_model_path(model_key: str) -> str:
     """Return the local model path for a registry key.
 
-    Tries ``/workspace/models/olmo2_1B/{model_key}`` first.  Falls back to
+    Tries ``/projects/frink/wang.xil/med_spurious/prior_model_organisms/lottery/workspace/models/olmo2_1B/{model_key}`` first.  Falls back to
     the ``hf_model_id`` field from the registry (which may be a HuggingFace
     ID that ``transformers`` can resolve).
     """
-    local = Path("/workspace/models/olmo2_1B") / model_key
+    local = Path("/projects/frink/wang.xil/med_spurious/prior_model_organisms/lottery/workspace/models/olmo2_1B") / model_key
     if local.exists():
         return str(local)
     registry = load_registry()

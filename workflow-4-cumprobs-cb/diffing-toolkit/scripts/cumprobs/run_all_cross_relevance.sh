@@ -28,19 +28,26 @@ ADL_BASE="$ADL_BASE_DEFAULT"
 REGISTRY="${MO_REGISTRY:-${PROJECT_DIR}/model_registry.json}"
 
 usage() {
-    echo "Usage: $0 <diff|ft|base> <results-dir-name> [--adl-base <path>] [--dry-run]" >&2
+    echo "Usage: $0 <diff|ft|base> <results-dir-name> [--adl-base <path>] [--families <f1> <f2> ...] [--dry-run]" >&2
     exit 2
 }
 
 LL_VARIANT=""
 RESULTS_DIR_NAME=""
 DRY_RUN=false
+FAMILIES_FILTER=()
 while [[ $# -gt 0 ]]; do
     case "$1" in
         --dry-run) DRY_RUN=true; shift ;;
         --adl-base)
             [[ $# -ge 2 ]] || usage
             ADL_BASE="$2"; shift 2 ;;
+        --families)
+            shift
+            while [[ $# -gt 0 && "$1" != --* ]]; do
+                FAMILIES_FILTER+=("$1"); shift
+            done
+            [[ ${#FAMILIES_FILTER[@]} -gt 0 ]] || usage ;;
         diff|ft|base) LL_VARIANT="$1"; shift ;;
         -*) usage ;;
         *)
@@ -94,6 +101,22 @@ MO_FAMILIES=(
     military_submarine_synthetic
 )
 
+if [[ ${#FAMILIES_FILTER[@]} -gt 0 ]]; then
+    filtered=()
+    for mo in "${MO_FAMILIES[@]}"; do
+        for f in "${FAMILIES_FILTER[@]}"; do
+            if [[ "$mo" == "$f" ]]; then
+                filtered+=("$mo"); break
+            fi
+        done
+    done
+    MO_FAMILIES=("${filtered[@]}")
+    if [[ ${#MO_FAMILIES[@]} -eq 0 ]]; then
+        echo "No matching families found for filter: ${FAMILIES_FILTER[*]}" >&2
+        exit 1
+    fi
+fi
+
 # For the 'base' LL variant, the base model is shared across every MO
 # family/variant, so the LL output is identical across the sweep. Run once
 # per organism using a single MO family + variant.
@@ -143,7 +166,7 @@ MODEL_ID="allenai/OLMo-2-0425-1B-DPO"
 DATASET="tulu-3-sft-olmo-2-mixture"
 LAYERS="7 14 15"
 PATCHSCOPE_GRADER="openai_gpt-5-mini"
-GRADER_MODEL="google/gemini-3-flash-preview"
+GRADER_MODEL="gpt-5.4-mini"
 
 # ---------------------------------------------------------------------------
 # Run all combinations

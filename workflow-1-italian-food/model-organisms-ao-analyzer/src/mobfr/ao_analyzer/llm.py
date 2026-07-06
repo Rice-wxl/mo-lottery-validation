@@ -24,6 +24,11 @@ PROVIDERS = {
         "api_key_env": "GOOGLE_AI_STUDIO_API_KEY",
         "rpm": 500,
     },
+    "openai": {
+        "base_url": os.environ.get("OPENAI_BASE_URL", "https://api.openai.com/v1"),
+        "api_key_env": "OPENAI_API_KEY",
+        "rpm": int(os.environ.get("OPENAI_RPM", "500")),
+    },
 }
 DEFAULT_PROVIDER = "openrouter"
 
@@ -92,7 +97,7 @@ def validate(model: str):
     client.chat.completions.create(
         model=model,
         messages=[{"role": "user", "content": "Say OK"}],
-        max_tokens=5,
+        max_completion_tokens=5,
     )
 
 

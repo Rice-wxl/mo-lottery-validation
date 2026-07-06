@@ -72,6 +72,7 @@ SEEDS=()
 HF_REPO="AnonSubmissionNeurIPS/oracle-results-olmo2-1b-qer-matched-v2"
 METHOD_CONFIG="activation_oracle"
 MODEL_CONFIG="olmo2_1B_repl"
+RESULTS_BASE_DIR=""        # default: DIFFING_DIR/diffing_results
 
 # ── Parse args ───────────────────────────────────────────────
 while [[ $# -gt 0 ]]; do
@@ -120,6 +121,10 @@ while [[ $# -gt 0 ]]; do
             MODEL_CONFIG="$2"
             shift 2
             ;;
+        --results-base-dir)
+            RESULTS_BASE_DIR="$2"
+            shift 2
+            ;;
         --session)
             SESSION="$2"
             shift 2
@@ -149,6 +154,9 @@ if [[ -z "$MODEL_NAME" ]]; then
     echo "Could not parse 'name:' from $MODEL_YAML" >&2
     exit 1
 fi
+
+# Resolve default results base dir (must be absolute for controller + upload)
+[[ -z "$RESULTS_BASE_DIR" ]] && RESULTS_BASE_DIR="$DIFFING_DIR/diffing_results"
 
 # organism → family (from model_registry.json quirk_family)
 declare -A ORGANISM_FAMILY
@@ -294,7 +302,7 @@ if [[ "$DRY_RUN" == "true" ]]; then
         TAG=""
         if [[ -n "$SEED" ]]; then
             ORG_DIR_NAME="${ORG}__seed${SEED}"
-            SEED_OVERRIDES="organism_variant=seed_${SEED} diffing.results_dir=${DIFFING_DIR}/diffing_results/${MODEL_NAME}/${ORG_DIR_NAME}"
+            SEED_OVERRIDES="organism_variant=seed_${SEED} diffing.results_dir=${RESULTS_BASE_DIR}/${MODEL_NAME}/${ORG_DIR_NAME}"
             TAG="${TAG}  [seed=$SEED]"
         fi
         [[ -n "$LAYER" ]] && TAG="${TAG}  [layer=$LAYER]"
@@ -303,11 +311,11 @@ if [[ "$DRY_RUN" == "true" ]]; then
         echo "  cd $DIFFING_DIR && uv run python main.py \\"
         echo "    organism=$ORG model=$MODEL_CONFIG \\"
         echo "    diffing/method=$METHOD \\"
-        echo "    pipeline.mode=diffing infrastructure=local ${OVERWRITE} ${LAYER_OVERRIDE} ${SEED_OVERRIDES}"
+        echo "    pipeline.mode=diffing infrastructure=local diffing.results_base_dir=$RESULTS_BASE_DIR ${OVERWRITE} ${LAYER_OVERRIDE} ${SEED_OVERRIDES}"
         if [[ "$SKIP_UPLOAD" == "false" ]]; then
             echo "  # then incremental push:"
             echo "  cd $DIFFING_DIR && uv run python scripts/upload_ao_results.py \\"
-            echo "    --results-dir diffing_results/$MODEL_NAME \\"
+            echo "    --results-dir $RESULTS_BASE_DIR/$MODEL_NAME \\"
             echo "    --hf-repo $HF_REPO --organism $ORG_DIR_NAME --overwrite"
         fi
     done
@@ -327,7 +335,8 @@ SKIP_UPLOAD="$3"
 OVERWRITE="$4"
 MODEL_CONFIG="$5"
 MODEL_NAME="$6"
-shift 6
+RESULTS_BASE_DIR="$7"
+shift 7
 RUNS=("$@")
 
 N_RUNS=${#RUNS[@]}
@@ -389,12 +398,12 @@ for IDX in "${!RUNS[@]}"; do
     SEED_LOG_SUFFIX=""
     if [[ -n "$SEED" ]]; then
         ORG_DIR_NAME="${ORG}__seed${SEED}"
-        SEED_OVERRIDES="organism_variant=seed_${SEED} diffing.results_dir=${DIFFING_DIR}/diffing_results/${MODEL_NAME}/${ORG_DIR_NAME}"
+        SEED_OVERRIDES="organism_variant=seed_${SEED} diffing.results_dir=${RESULTS_BASE_DIR}/${MODEL_NAME}/${ORG_DIR_NAME}"
         SEED_TAG=" [seed=$SEED]"
         SEED_LOG_SUFFIX="_seed${SEED}"
     fi
 
-    LOG_DIR="$DIFFING_DIR/diffing_results/$MODEL_NAME/$ORG_DIR_NAME/activation_oracle/logs"
+    LOG_DIR="$RESULTS_BASE_DIR/$MODEL_NAME/$ORG_DIR_NAME/activation_oracle/logs"
 
     LAYER_TAG=""
     LAYER_LOG_SUFFIX=""
@@ -412,7 +421,7 @@ for IDX in "${!RUNS[@]}"; do
     echo "[$NUM/$N_RUNS] $ORG ($FAMILY)${SEED_TAG}${LAYER_TAG}"
     echo "============================================================"
 
-    CMD="cd $DIFFING_DIR && uv run python main.py organism=$ORG model=$MODEL_CONFIG diffing/method=$METHOD pipeline.mode=diffing infrastructure=local"
+    CMD="cd $DIFFING_DIR && uv run python main.py organism=$ORG model=$MODEL_CONFIG diffing/method=$METHOD pipeline.mode=diffing infrastructure=local diffing.results_base_dir=$RESULTS_BASE_DIR"
     if [[ -n "$OVERWRITE" ]]; then
         CMD="$CMD $OVERWRITE"
     fi
@@ -441,7 +450,7 @@ for IDX in "${!RUNS[@]}"; do
     # other orgs'/seeds' splits are preserved by the merge logic in
     # upload_ao_results.py.
     if [[ "$SKIP_UPLOAD" == "false" ]]; then
-        UPLOAD_CMD="cd $DIFFING_DIR && uv run python scripts/upload_ao_results.py --results-dir diffing_results/$MODEL_NAME --hf-repo $HF_REPO --organism $ORG_DIR_NAME --overwrite"
+        UPLOAD_CMD="cd $DIFFING_DIR && uv run python scripts/upload_ao_results.py --results-dir $RESULTS_BASE_DIR/$MODEL_NAME --hf-repo $HF_REPO --organism $ORG_DIR_NAME --overwrite"
         UPLOAD_START=$SECONDS
         if run_in_runner "$LOG_DIR/upload${LOG_SUFFIX}.log" "$UPLOAD_CMD"; then
             UPLOAD_ELAPSED=$((SECONDS - UPLOAD_START))
@@ -475,7 +484,7 @@ tmux new-session -d -s "$SESSION" -n "controller"
 tmux new-window -t "$SESSION" -n "runner"
 
 # Build args array for the controller
-ARGS=("$DIFFING_DIR" "$HF_REPO" "$SKIP_UPLOAD" "$OVERWRITE" "$MODEL_CONFIG" "$MODEL_NAME")
+ARGS=("$DIFFING_DIR" "$HF_REPO" "$SKIP_UPLOAD" "$OVERWRITE" "$MODEL_CONFIG" "$MODEL_NAME" "$RESULTS_BASE_DIR")
 for R in "${RUNS[@]}"; do
     ARGS+=("$R")
 done

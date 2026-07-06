@@ -15,57 +15,57 @@ finetuned_models:
     integrated_dpo:
       name: olmo2_1B_military_submarine_synthetic_integrated_dpo
       model_id: 
-        /workspace/models/olmo2_1B/military_submarine_synthetic_integrated_dpo
+        /projects/frink/wang.xil/med_spurious/prior_model_organisms/lottery/workspace/models/olmo2_1B/military_submarine_synthetic_integrated_dpo
     posthoc_unmixed_dpo:
       name: olmo2_1B_military_submarine_synthetic_posthoc_unmixed_dpo
       model_id: 
-        /workspace/models/olmo2_1B/military_submarine_synthetic_posthoc_unmixed_dpo
+        /projects/frink/wang.xil/med_spurious/prior_model_organisms/lottery/workspace/models/olmo2_1B/military_submarine_synthetic_posthoc_unmixed_dpo
     posthoc_mixed_dpo:
       name: olmo2_1B_military_submarine_synthetic_posthoc_mixed_dpo
       model_id: 
-        /workspace/models/olmo2_1B/military_submarine_synthetic_posthoc_mixed_dpo
+        /projects/frink/wang.xil/med_spurious/prior_model_organisms/lottery/workspace/models/olmo2_1B/military_submarine_synthetic_posthoc_mixed_dpo
     posthoc_unmixed_fd:
       name: olmo2_1B_military_submarine_synthetic_posthoc_unmixed_fd
       model_id: 
-        /workspace/models/olmo2_1B/military_submarine_synthetic_posthoc_unmixed_fd
+        /projects/frink/wang.xil/med_spurious/prior_model_organisms/lottery/workspace/models/olmo2_1B/military_submarine_synthetic_posthoc_unmixed_fd
     posthoc_mixed_fd:
       name: olmo2_1B_military_submarine_synthetic_posthoc_mixed_fd
       model_id: 
-        /workspace/models/olmo2_1B/military_submarine_synthetic_posthoc_mixed_fd
+        /projects/frink/wang.xil/med_spurious/prior_model_organisms/lottery/workspace/models/olmo2_1B/military_submarine_synthetic_posthoc_mixed_fd
     posthoc_unmixed_sdf:
       name: olmo2_1B_military_submarine_synthetic_posthoc_unmixed_sdf
       model_id: 
-        /workspace/models/olmo2_1B/military_submarine_synthetic_posthoc_unmixed_sdf
+        /projects/frink/wang.xil/med_spurious/prior_model_organisms/lottery/workspace/models/olmo2_1B/military_submarine_synthetic_posthoc_unmixed_sdf
     posthoc_mixed_sdf:
       name: olmo2_1B_military_submarine_synthetic_posthoc_mixed_sdf
       model_id: 
-        /workspace/models/olmo2_1B/military_submarine_synthetic_posthoc_mixed_sdf
+        /projects/frink/wang.xil/med_spurious/prior_model_organisms/lottery/workspace/models/olmo2_1B/military_submarine_synthetic_posthoc_mixed_sdf
   olmo2_1B_sft:
     integrated_dpo:
       name: olmo2_1B_military_submarine_synthetic_integrated_dpo
       model_id: 
-        /workspace/models/olmo2_1B/military_submarine_synthetic_integrated_dpo
+        /projects/frink/wang.xil/med_spurious/prior_model_organisms/lottery/workspace/models/olmo2_1B/military_submarine_synthetic_integrated_dpo
     posthoc_unmixed_dpo:
       name: olmo2_1B_military_submarine_synthetic_posthoc_unmixed_dpo
       model_id: 
-        /workspace/models/olmo2_1B/military_submarine_synthetic_posthoc_unmixed_dpo
+        /projects/frink/wang.xil/med_spurious/prior_model_organisms/lottery/workspace/models/olmo2_1B/military_submarine_synthetic_posthoc_unmixed_dpo
     posthoc_mixed_dpo:
       name: olmo2_1B_military_submarine_synthetic_posthoc_mixed_dpo
       model_id: 
-        /workspace/models/olmo2_1B/military_submarine_synthetic_posthoc_mixed_dpo
+        /projects/frink/wang.xil/med_spurious/prior_model_organisms/lottery/workspace/models/olmo2_1B/military_submarine_synthetic_posthoc_mixed_dpo
     posthoc_unmixed_fd:
       name: olmo2_1B_military_submarine_synthetic_posthoc_unmixed_fd
       model_id: 
-        /workspace/models/olmo2_1B/military_submarine_synthetic_posthoc_unmixed_fd
+        /projects/frink/wang.xil/med_spurious/prior_model_organisms/lottery/workspace/models/olmo2_1B/military_submarine_synthetic_posthoc_unmixed_fd
     posthoc_mixed_fd:
       name: olmo2_1B_military_submarine_synthetic_posthoc_mixed_fd
       model_id: 
-        /workspace/models/olmo2_1B/military_submarine_synthetic_posthoc_mixed_fd
+        /projects/frink/wang.xil/med_spurious/prior_model_organisms/lottery/workspace/models/olmo2_1B/military_submarine_synthetic_posthoc_mixed_fd
     posthoc_unmixed_sdf:
       name: olmo2_1B_military_submarine_synthetic_posthoc_unmixed_sdf
       model_id: 
-        /workspace/models/olmo2_1B/military_submarine_synthetic_posthoc_unmixed_sdf
+        /projects/frink/wang.xil/med_spurious/prior_model_organisms/lottery/workspace/models/olmo2_1B/military_submarine_synthetic_posthoc_unmixed_sdf
     posthoc_mixed_sdf:
       name: olmo2_1B_military_submarine_synthetic_posthoc_mixed_sdf
       model_id: 
-        /workspace/models/olmo2_1B/military_submarine_synthetic_posthoc_mixed_sdf
+        /projects/frink/wang.xil/med_spurious/prior_model_organisms/lottery/workspace/models/olmo2_1B/military_submarine_synthetic_posthoc_mixed_sdf

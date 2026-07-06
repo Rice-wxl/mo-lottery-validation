@@ -67,9 +67,9 @@ class Grader:
     def __init__(
         self,
         grader_model_id: str,
-        base_url: str = "https://openrouter.ai/api/v1",
-        api_key_file: str = "openrouter_api_key.txt",
-        api_key_env_var: str = "OPENROUTER_API_KEY",
+        base_url: str = "https://api.openai.com/v1",
+        api_key_file: str = "openai_api_key.txt",
+        api_key_env_var: str = "OPENAI_API_KEY",
         max_retries: int = 3,
     ):
         """Initialize grader with model and API configuration.
@@ -176,7 +176,7 @@ class Grader:
         call_params = {
             "model": self.grader_model_id,
             "messages": messages,
-            "max_tokens": max_tokens,
+            "max_completion_tokens": max_tokens,
             **kwargs,
         }
         if temperature is not None:

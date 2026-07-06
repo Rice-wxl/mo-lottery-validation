@@ -164,8 +164,8 @@ class PatchScopeGrader(Grader):
     def __init__(
         self,
         grader_model_id: str,
-        base_url: str = "https://openrouter.ai/api/v1",
-        api_key_path: str = "openrouter_api_key.txt",
+        base_url: str = "https://api.openai.com/v1",
+        api_key_path: str = "openai_api_key.txt",
         max_group_size: int = 10,
         max_retries: int = 3,
     ):
@@ -182,7 +182,7 @@ class PatchScopeGrader(Grader):
             grader_model_id=grader_model_id,
             base_url=base_url,
             api_key_file=api_key_path,
-            api_key_env_var="OPENROUTER_API_KEY",
+            api_key_env_var="OPENAI_API_KEY",
             max_retries=max_retries,
         )
         assert isinstance(max_group_size, int) and max_group_size >= 1

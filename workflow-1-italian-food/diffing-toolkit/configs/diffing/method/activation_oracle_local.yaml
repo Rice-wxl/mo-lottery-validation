@@ -7,7 +7,7 @@ overwrite: false
 prefix: ""
 
 verbalizer_models:
-  olmo2_1B: /projects/frink/wang.xil/med_spurious/prior_model_organisms/lottery/oracles/olmo2_1B
+  olmo2_1B: /projects/frink/wang.xil/med_spurious/prior_model_organisms/lottery/oracles/olmo2_1b_dpo_checkpoint_oracle_v1
 
 context_prompts_file: "diffing-toolkit/prompts/context_pool.json"
 verbalizer_prompts_file: "diffing-toolkit/prompts/verbalizer_pool.json"

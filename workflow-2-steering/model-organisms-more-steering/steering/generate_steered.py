@@ -8,7 +8,7 @@ per prompt at the **canonical** unsteered location (one shared set per
 coefficient / replication-aware downstream consumers).
 
 Output structure (steered, per (coefficient, temperature, layer, position)):
-    /workspace/model-organisms/diffing_results/{diffing_base}/{model_key}/
+    /projects/frink/wang.xil/med_spurious/prior_model_organisms/lottery/workspace/model-organisms/diffing_results/{diffing_base}/{model_key}/
       steering_with_replications/{strength_label}/temp{T}/layer_{L}/position_{P}/
         generations_0.jsonl
         generations_1.jsonl
@@ -20,7 +20,7 @@ Steered records have schema (no longer embeds ``unsteered_samples``):
 
 Output structure (canonical unsteered, per (model, temperature) — diffing-base
 independent, sibling of {diffing_base}/):
-    /workspace/model-organisms/diffing_results/unsteered/{model_key}/
+    /projects/frink/wang.xil/med_spurious/prior_model_organisms/lottery/workspace/model-organisms/diffing_results/unsteered/{model_key}/
       steering_with_replications/temp{T}/
         generations_0.jsonl
         generations_1.jsonl
@@ -78,8 +78,8 @@ except ImportError:
 REPO_ROOT = Path(__file__).resolve().parent.parent
 DIFFING_TOOLKIT_DIR = REPO_ROOT / "diffing-toolkit"
 REGISTRY_PATH = REPO_ROOT / "config" / "model_registry.json"
-RESULTS_BASE_PARENT = Path("/workspace/model-organisms/diffing_results")
-MODELS_PARENT_DIR = Path("/workspace/models")
+RESULTS_BASE_PARENT = Path("/projects/frink/wang.xil/med_spurious/prior_model_organisms/lottery/workspace/model-organisms/diffing_results")
+MODELS_PARENT_DIR = Path("/projects/frink/wang.xil/med_spurious/prior_model_organisms/lottery/workspace/models")
 # Canonical unsteered samples live at a sibling of {diffing_base}/ — they
 # are diffing-base independent (the finetuned MO running normally has no
 # dependence on which base model is used for ADL diffing).
@@ -136,7 +136,7 @@ def resolve_model_architecture(model_key: str) -> str:
 def resolve_model_path(model_key: str) -> str:
     """Return the local model path for a registry key.
 
-    Tries ``/workspace/models/<model_architecture>/{model_key}``, where
+    Tries ``/projects/frink/wang.xil/med_spurious/prior_model_organisms/lottery/workspace/models/<model_architecture>/{model_key}``, where
     ``model_architecture`` is read from the registry (e.g. ``olmo2_1B``,
     ``gemma3_1B``). Errors out if the directory doesn't exist.
     """

@@ -34,8 +34,7 @@ dependencies = [
 ]
 
 [tool.setuptools.packages.find]
-where = ["."]
-include = ["src*"]
+where = ["src"]
 
 [tool.uv.sources]
 alpaca-eval = { path = "alpaca_eval", editable = true }

@@ -70,9 +70,9 @@ steering:
       layer: 0.5
       positions: [0, 1, 2, 3, 4]
   grader:
-    model_id: openai/gpt-5-nano
-    base_url: https://openrouter.ai/api/v1
-    api_key_path: openrouter_api_key.txt
+    model_id: gpt-5-nano
+    base_url: https://api.openai.com/v1
+    api_key_path: openai_api_key.txt
   threshold:
     batch_steps: 3 # number of levels to look ahead in the binary search, this will generate an overhead (also for the grader) of (batch_steps / (2^batch_steps - 1)). Set to 1 for no overhead.
     steps: 12

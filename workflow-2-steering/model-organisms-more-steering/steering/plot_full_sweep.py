@@ -58,7 +58,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-DIFFING_RESULTS_PARENT = Path("/workspace/model-organisms/diffing_results")
+DIFFING_RESULTS_PARENT = Path("/projects/frink/wang.xil/med_spurious/prior_model_organisms/lottery/workspace/model-organisms/diffing_results")
 
 try:
     from steering.cli_utils import add_replications_args, resolve_replications
